@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/schedule")
+@RequestMapping("/emails")
 public class ScheduledEmailController {
 
     @Autowired
     private ScheduledEmailService service;
 
-    @PostMapping
+    @PostMapping("/schedule")
     public ResponseEntity<ScheduledEmail> scheduleEmail(@RequestBody ScheduledEmail email) {
         ScheduledEmail scheduled = service.scheduleEmail(email);
         return ResponseEntity.ok(scheduled);

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +22,8 @@ public class ScheduledEmailTask {
     @Autowired
     private EmailSenderService senderService;
 
-    @Scheduled(cron = "0 0 8 * * ?") // Executa diariamente às 8h
+//    @Scheduled(cron = "0 0 8 * * ?") // Executa diariamente às 8h
+    @Scheduled(fixedRate = 60000) // Executa de minuto em minuto
     public void sendScheduledEmails() {
         LocalDate today = LocalDate.now();
         List<ScheduledEmail> emailsToSend = emailService.getEmailsToSend(today);
@@ -42,7 +44,11 @@ public class ScheduledEmailTask {
     }
 
     private List<File> getFiles(List<String> paths) {
+        if (paths == null) {
+            return new ArrayList<>(); // Retorna uma lista vazia se paths for null
+        }
         return paths.stream().map(File::new).collect(Collectors.toList());
     }
+
 }
 
