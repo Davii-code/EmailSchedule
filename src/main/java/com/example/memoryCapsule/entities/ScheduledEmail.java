@@ -28,7 +28,8 @@ public class ScheduledEmail {
     @Column(name = "scheduled_date", nullable = false)
     private LocalDate scheduledDate;
 
-    private List<String> photosEmails;
+    @OneToMany(mappedBy = "scheduledEmail", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<PhotosEmails> photosEmails;
 
     @Column(name = "sent", nullable = false)
     private boolean sent = false;
@@ -82,11 +83,11 @@ public class ScheduledEmail {
         this.sent = sent;
     }
 
-    public List<String> getPhotosEmails() {
+    public List<PhotosEmails> getPhotosEmails() {
         return photosEmails;
     }
 
-    public void setPhotosEmails(List<String> photosEmails) {
+    public void setPhotosEmails(List<PhotosEmails> photosEmails) {
         this.photosEmails = photosEmails;
     }
 }

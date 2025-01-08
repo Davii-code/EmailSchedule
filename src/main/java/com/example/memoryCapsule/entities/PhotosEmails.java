@@ -1,11 +1,18 @@
 package com.example.memoryCapsule.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.*;
 
-import java.util.List;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "email_photos")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class PhotosEmails {
 
     @Id
@@ -14,7 +21,11 @@ public class PhotosEmails {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "email_id")
+    @JsonIgnore
     private ScheduledEmail scheduledEmail;
+
+    private String name;
+    private String type;
 
     @Lob
     @Column(name = "photo_data")
@@ -34,6 +45,22 @@ public class PhotosEmails {
 
     public void setScheduledEmail(ScheduledEmail scheduledEmail) {
         this.scheduledEmail = scheduledEmail;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public byte[] getPhotoData() {
