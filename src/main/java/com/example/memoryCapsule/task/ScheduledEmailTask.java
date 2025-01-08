@@ -32,9 +32,9 @@ public class ScheduledEmailTask {
             try {
                 senderService.sendEmail(
                         email.getRecipientEmail(),
-                        "Memory Capsule",
+                        "Memory Capsule " + email.getRecipientName(),
                         email.getMessage(),
-                        getFiles(email.getPhotoPaths())
+                        getFiles(email.getPhotosEmails())
                 );
                 emailService.markAsSent(email);
             } catch (Exception e) {

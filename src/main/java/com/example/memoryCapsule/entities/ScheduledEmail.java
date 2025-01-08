@@ -28,7 +28,7 @@ public class ScheduledEmail {
     @Column(name = "scheduled_date", nullable = false)
     private LocalDate scheduledDate;
 
-    private List<String> photoPaths;
+    private List<String> photosEmails;
 
     @Column(name = "sent", nullable = false)
     private boolean sent = false;
@@ -73,13 +73,6 @@ public class ScheduledEmail {
         this.scheduledDate = scheduledDate;
     }
 
-    public List<String> getPhotoPaths() {
-        return photoPaths;
-    }
-
-    public void setPhotoPaths(List<String> photoPaths) {
-        this.photoPaths = photoPaths;
-    }
 
     public boolean isSent() {
         return sent;
@@ -87,5 +80,13 @@ public class ScheduledEmail {
 
     public void setSent(boolean sent) {
         this.sent = sent;
+    }
+
+    public List<String> getPhotosEmails() {
+        return photosEmails;
+    }
+
+    public void setPhotosEmails(List<String> photosEmails) {
+        this.photosEmails = photosEmails;
     }
 }
